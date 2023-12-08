@@ -1,0 +1,97 @@
+<!-- dashboard.html (update the existing file) -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+<body>
+
+  <div class="area"></div><nav class="main-menu">
+     <ul>
+		<li>
+			<a th:href="@{/addProperty}">
+			<i class="fa fa-home fa-2x"></i>
+				 <span class="nav-text">
+				 	Add Property
+				</span>
+			</a>
+	    </li>
+		<li>
+			<a th:href="@{/applicants/form}" class="btn btn-primary">
+			<i class="fa fa-book fa-2x"></i>
+				<span class="nav-text">
+					Add Applicant
+				</span>
+			</a>
+		</li>
+		<li>
+            <a th:href="@{/bids/add}">
+            <i class="fa fa-film fa-2x"></i>
+                <span class="nav-text">
+                    Add Bid
+                </span>
+           </a>
+        </li>
+     </ul>
+
+            <ul class="logout">
+                <li>
+                   <a href="#">
+                         <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>
+        
+<div class="topnav">
+<div></div> 
+  
+  
+  <a th:href="@{/users/list}">Users</a>
+  <a th:href="@{/applicants/list}">Applicants</a>
+  <a th:href="@{/dashboard}">Properties</a>
+  <a th:href="@{/bids/bids}">Bids</a>
+    <a th:href="@{/bids/propertyBidList}">Property Bid List</a>
+
+  
+  
+</div>
+        	
+        </br></br></br></br></br>
+
+	    <div th:if="${not #lists.isEmpty(properties)}" >
+	        
+					<table>
+					  <thead>
+    					<tr>
+      					 <th>ID</th>
+      					 <th>Property Name</th>
+                         <th>Description</th>
+                         <th>User Id</th>
+                         <th>Asking Price</th>
+                         </tr>
+                      </thead>	
+                      <div th:each="property : ${properties}">
+                      <tbody>
+						<tr>
+							<td th:text="${property.id}"></td>	
+	                    	<td th:text="${property.name}"></td>
+	                    	<td th:text="${property.description}"></td>
+	                    	<td th:text="${property.userId}"></td>
+	                   		<td th:text="${property.askingPrice}"></td>
+	                    </tr>
+	                   </tbody> 
+	                 </table>
+	            </div>
+	         
+	       
+	    </div>
+	        
+</body>
+</html>

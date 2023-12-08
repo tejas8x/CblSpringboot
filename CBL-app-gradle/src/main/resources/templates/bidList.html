@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bid List</title>
+</head>
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+<body>
+	
+<div class="area"></div><nav class="main-menu">
+     <ul>
+		<li>
+			<a th:href="@{/addProperty}">
+			<i class="fa fa-home fa-2x"></i>
+				 <span class="nav-text">
+				 	Add Property
+				</span>
+			</a>
+	    </li>
+		<li>
+			<a th:href="@{/applicants/form}" class="btn btn-primary">
+			<i class="fa fa-book fa-2x"></i>
+				<span class="nav-text">
+					Add Applicant
+				</span>
+			</a>
+		</li>
+		<li>
+            <a th:href="@{/bids/add}">
+            <i class="fa fa-film fa-2x"></i>
+                <span class="nav-text">
+                    Add Bid
+                </span>
+           </a>
+        </li>
+     </ul>
+
+            <ul class="logout">
+                <li>
+                   <a href="#">
+                         <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>	
+
+   <div class="topnav">
+<div></div> 
+  
+  
+  <a th:href="@{/users/list}">Users</a>
+  <a th:href="@{/applicants/list}">Applicants</a>
+  <a th:href="@{/dashboard}">Properties</a>
+  <a th:href="@{/bids/bids}">Bids</a>
+    <a th:href="@{/bids/propertyBidList}">Property Bid List</a>
+
+  
+  
+</div>
+</br></br></br></br></br>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Bid Date</th>
+                <th>Bid Amount</th>
+                <th>Bid On Property</th>
+                <th>Applicant ID</th>
+                <th>Applicant Name</th>
+                <th>Property ID</th>
+                <th>Bid Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate over the list of bids -->
+            <tr th:each="bid : ${bids}">
+                <td th:text="${bid.id}"></td>
+                 <td th:text="${bid.date}"></td>
+                <td th:text="${bid.bidAmount}"></td>
+                <td th:text="${bid.bidOnProperty}"></td>
+                <td th:text="${bid.applicantId}"></td>
+                <td th:text="${bid.BidApplicantName}"></td>
+                <td th:text="${bid.propertyId}"></td>
+                <td th:text="${bid.bidStatus}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bid Form</title>
+</head>
+
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+
+<body>
+
+   <div class="area"></div><nav class="main-menu">
+     <ul>
+		<li>
+			<a th:href="@{/addProperty}">
+			<i class="fa fa-home fa-2x"></i>
+				 <span class="nav-text">
+				 	Add Property
+				</span>
+			</a>
+	    </li>
+		<li>
+			<a th:href="@{/applicants/form}" class="btn btn-primary">
+			<i class="fa fa-book fa-2x"></i>
+				<span class="nav-text">
+					Add Applicant
+				</span>
+			</a>
+		</li>
+		<li>
+            <a th:href="@{/bids/add}">
+            <i class="fa fa-film fa-2x"></i>
+                <span class="nav-text">
+                    Add Bid
+                </span>
+           </a>
+        </li>
+     </ul>
+
+            <ul class="logout">
+                <li>
+                   <a href="#">
+                         <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>
+        
+        <div class="topnav">
+<div></div> 
+  
+  
+  <a th:href="@{/users/list}">Users</a>
+  <a th:href="@{/applicants/list}">Applicants</a>
+  <a th:href="@{/dashboard}">Properties</a>
+  <a th:href="@{/bids/bids}">Bids</a>
+    <a th:href="@{/bids/propertyBidList}">Property Bid List</a>
+
+  
+  
+</div>
+
+    <form action="/bids/add" method="post" th:object="${bid}">
+	 <ul class="form-style-1">	
+
+        <label for="bidAmount">Bid Amount:</label>
+        <input type="text" id="bidAmount" name="bidAmount" th:field="*{bidAmount}" required/>
+
+        <label for="bidOnProperty">Bid on Property:</label>
+        <input type="text" id="bidOnProperty" name="bidOnProperty" th:field="*{bidOnProperty}" required/>
+
+        <label for="applicantId">Applicant ID:</label>
+        <input type="text" id="applicantId" name="applicantId" th:field="*{applicantId}" required/>
+
+		<label for="applicantId">Applicant Name:</label>
+        <input type="text" id="bidApplicantName" name="bidApplicantName" th:field="*{bidApplicantName}" required/>
+
+
+        <label for="propertyId">Property ID:</label>
+        <input type="text" id="propertyId" name="propertyId" th:field="*{propertyId}" required/>
+
+        <button type="submit">Submit Bid</button>
+	 </ul> 
+    </form>
+    
+     <hr>    
+					<table>
+					  <thead>
+    					<tr>
+      					 <th>ID</th>
+      					 <th>Property Name</th>
+                         <th>Description</th>
+                         <th>User Id</th>
+                         <th>Asking Price</th>
+                         </tr>
+                      </thead>	
+                      <div th:each="property : ${properties}">
+                      <tbody>
+						<tr>
+							<td th:text="${property.id}"></td>	
+	                    	<td th:text="${property.name}"></td>
+	                    	<td th:text="${property.description}"></td>
+	                    	<td th:text="${property.userId}"></td>
+	                   		<td th:text="${property.askingPrice}"></td>
+	                    </tr>
+	                   </tbody> 
+	                 </table>
+	            </div>
+    
+    <div th:if="${propertyNotFound}">
+    <script th:inline="javascript">
+        alert('Property not found');
+    </script>
+</div>
+
+</body>
+</html>
